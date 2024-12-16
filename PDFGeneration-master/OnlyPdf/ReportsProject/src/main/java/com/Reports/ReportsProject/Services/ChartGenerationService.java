@@ -1,6 +1,7 @@
 package com.Reports.ReportsProject.Services;
 
 import com.Reports.ReportsProject.Entities.SampleData;
+
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
@@ -86,4 +87,7 @@ public class ChartGenerationService {
 
         return byteArrayOutputStream;
     }
+
+
+
 }

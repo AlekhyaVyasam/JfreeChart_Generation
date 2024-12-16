@@ -16,7 +16,6 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/charts")
-
 public class ChartGeneration {
 
     @Autowired
@@ -27,13 +26,13 @@ public class ChartGeneration {
 
     @GetMapping("/gender-bar")
     public ResponseEntity<byte[]> generateGenderBarChart() {
-
+        // Fetch data from the database
         List<SampleData> sampleDataList = sampleDataRepository.findAll();
 
-
+        // Generate the bar chart
         ByteArrayOutputStream chartOutputStream = chartGenerationService.generateGenderChart(sampleDataList);
 
-
+        // Prepare the response
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "image/png");
 
@@ -42,13 +41,17 @@ public class ChartGeneration {
 
     @GetMapping("/gender-line")
     public ResponseEntity<byte[]> generateGenderLineChart() {
-
+        // Fetch data from the database
         List<SampleData> sampleDataList = sampleDataRepository.findAll();
+
+        // Generate the line chart
         ByteArrayOutputStream chartOutputStream = chartGenerationService.generateLineChart(sampleDataList);
 
+        // Prepare the response
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "image/png");
 
         return new ResponseEntity<>(chartOutputStream.toByteArray(), headers, HttpStatus.OK);
     }
 }
+
